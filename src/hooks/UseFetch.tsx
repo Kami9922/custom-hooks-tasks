@@ -15,7 +15,7 @@ export const useFetch = <T = unknown,>(url: string): FetchResult<T> => {
 	const [data, setData] = useState<T | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const [error, setError] = useState<string | null>(null)
-	const [options, setOptions] = useState<FetchOptions | null>()
+	const [options, setOptions] = useState<FetchOptions | null>(null)
 
 	const fetchData = useCallback(async () => {
 		setIsLoading(true)
