@@ -1,4 +1,4 @@
-import { useFetch } from '../hooks/UseFetch'
+import { useFetch } from '../hooks/useFetch'
 
 interface Post {
 	id: number

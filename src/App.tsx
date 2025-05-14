@@ -1,10 +1,11 @@
 import './App.css'
-import { DemoFetch } from './components/DemoFetch'
+// import { DemoFetch } from './components/DemoFetch'
+import { DemoStorage } from './components/DemoStorage'
 
-function App() {
+const App = () => {
 	return (
 		<div className='App'>
-			<DemoFetch />
+			<DemoStorage />
 		</div>
 	)
 }
