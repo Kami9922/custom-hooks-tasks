@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, Ref } from 'react'
+import { useState, useRef, useEffect, Ref, useCallback } from 'react'
 
 type HoverReturnType<T extends HTMLElement> = {
 	hovered: boolean
@@ -11,19 +11,19 @@ export const useHover = <
 	const [hovered, setHovered] = useState(false)
 	const ref = useRef<T>(null)
 
+	const onMouseEnter = useCallback(() => setHovered(true), [])
+	const onMouseLeave = useCallback(() => setHovered(false), [])
+
 	useEffect(() => {
 		const refValue = ref.current
 		if (!refValue) return
 
-		const handleMouseEnter = () => setHovered(true)
-		const handleMouseLeave = () => setHovered(false)
-
-		refValue.addEventListener('mouseenter', handleMouseEnter)
-		refValue.addEventListener('mouseleave', handleMouseLeave)
+		refValue.addEventListener('mouseenter', onMouseEnter)
+		refValue.addEventListener('mouseleave', onMouseLeave)
 
 		return () => {
-			refValue.removeEventListener('mouseenter', handleMouseEnter)
-			refValue.removeEventListener('mouseleave', handleMouseLeave)
+			refValue.removeEventListener('mouseenter', onMouseEnter)
+			refValue.removeEventListener('mouseleave', onMouseLeave)
 		}
 	}, [])
 
